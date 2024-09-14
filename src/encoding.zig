@@ -250,9 +250,9 @@ pub const Utf8Decoder = struct {
             else => |other| return other,
         };
         const codepoint = switch (byte_length) {
-            2 => unicode.utf8Decode2(buf[0..2]),
-            3 => unicode.utf8Decode3(buf[0..3]),
-            4 => unicode.utf8Decode4(buf[0..4]),
+            2 => unicode.utf8Decode2(buf[0..2].*),
+            3 => unicode.utf8Decode3(buf[0..3].*),
+            4 => unicode.utf8Decode4(buf[0..4].*),
             else => unreachable,
         } catch return error.InvalidUtf8;
         return .{ .codepoint = codepoint, .byte_length = byte_length };
